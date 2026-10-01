@@ -1,0 +1,1791 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoze.lk — Premium Lifestyle & Luxury Gear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1d4ed8;
+            --primary-hover: #1e40af;
+            --badge-red: #ef4444;
+            --bg: #f8fafc;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --radius-full: 9999px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.07);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Top Announcement Header */
+        .top-bar {
+            background: #090d16;
+            color: #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 9px 40px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .top-bar a {
+            color: #60a5fa;
+            text-decoration: underline;
+            margin-left: 4px;
+        }
+
+        /* Navigation Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            z-index: 50;
+        }
+
+        .nav-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .nav-links li {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-links li:hover {
+            color: var(--primary);
+        }
+
+        .search-box-wrap {
+            position: relative;
+            flex: 1;
+            max-width: 320px;
+        }
+
+        .search-box-wrap input {
+            width: 100%;
+            padding: 10px 14px 10px 38px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border);
+            background: #f1f5f9;
+            font-size: 13px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-box-wrap input:focus {
+            background: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+        }
+
+        .search-box-wrap svg {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .icon-btn:hover {
+            background: #f1f5f9;
+            color: var(--primary);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--primary);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+        }
+
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #edf4ff 100%);
+            border-radius: 24px;
+            margin: 24px auto 48px;
+            padding: 56px;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: var(--radius-full);
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+        }
+
+        .hero-title span {
+            color: var(--primary);
+        }
+
+        .hero-desc {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+            max-width: 440px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 36px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-outline {
+            border: 1px solid #cbd5e1;
+            background: #fff;
+            color: var(--text-dark);
+            padding: 12px 22px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background: #f8fafc;
+        }
+
+        .hero-image-wrap {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-wrap img {
+            max-width: 100%;
+            height: 360px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .discount-sticker {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 76px;
+            height: 76px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .discount-sticker small {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Features Ribbon */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 24px 0 48px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 48px;
+        }
+
+        .feature-box {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: #f1f5f9;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .feature-info h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .feature-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Category Shortcuts */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            margin-bottom: 48px;
+        }
+
+        .category-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .category-card:hover {
+            border-color: var(--primary);
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cat-icon-wrap {
+            font-size: 26px;
+            margin-bottom: 6px;
+        }
+
+        .category-card h5 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .category-card span {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Section Header & Filter Pills */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .filter-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .pill-btn {
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            color: var(--text-dark);
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pill-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .pill-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        /* Product Cards Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 56px;
+        }
+
+        .item-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: #fff;
+            padding: 16px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s;
+        }
+
+        .item-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+            border-color: #cbd5e1;
+        }
+
+        .item-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: var(--badge-red);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: var(--radius-full);
+            z-index: 2;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: #fff;
+            border: 1px solid var(--border);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            color: #64748b;
+        }
+
+        .wishlist-btn:hover {
+            color: var(--badge-red);
+            border-color: var(--badge-red);
+        }
+
+        .item-img-wrap {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: #f8fafc;
+            cursor: pointer;
+        }
+
+        .item-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .item-card:hover .item-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .item-brand {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .item-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            line-height: 1.3;
+            cursor: pointer;
+        }
+
+        .item-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            color: #f59e0b;
+            margin-bottom: 10px;
+        }
+
+        .item-rating span {
+            color: var(--text-muted);
+            font-size: 11px;
+        }
+
+        .item-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .current-price {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .old-price {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .add-cart-btn {
+            width: 100%;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+
+        .add-cart-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        .add-cart-btn.added {
+            background: #16a34a !important;
+        }
+
+        /* Slide-Over Cart Drawer */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(3px);
+            z-index: 100;
+            display: none;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 400px;
+            height: 100%;
+            background: #fff;
+            z-index: 101;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cart-drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .drawer-title {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .drawer-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .cart-items-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 0;
+        }
+
+        .drawer-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 13px;
+        }
+
+        .drawer-footer {
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+
+        /* Toast Alert */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0f172a;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-md);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 200;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Modal Windows */
+        .modal-wrap {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.5);
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-box {
+            background: #fff;
+            border-radius: 16px;
+            max-width: 440px;
+            width: 100%;
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .modal-box input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .modal-box input:focus {
+            border-color: var(--primary);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">✓ Item added to cart!</div>
+
+    <!-- Announcement Bar -->
+    <div class="top-bar">
+        <div>⚡ Adoze.lk Exclusive Collection: Watches, Audio & Luxury Designer Gear <a href="#shop">Shop Now →</a></div>
+        <div>🚚 Islandwide Delivery | Free Shipping on orders over $99</div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">A</div>
+                Adoze<span>.lk</span>
+            </a>
+
+            <ul class="nav-links">
+                <li onclick="filterCategory('all')">Home</li>
+                <li onclick="filterCategory('all')">All Products</li>
+                <li onclick="filterCategory('watches')">Watches</li>
+                <li onclick="filterCategory('earphones')">Audio</li>
+                <li onclick="filterCategory('handbags')">Bags</li>
+                <li onclick="filterCategory('bracelets')">Jewelry</li>
+            </ul>
+
+            <div class="search-box-wrap">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" id="storeSearch" placeholder="Search Adoze.lk catalog..." onkeyup="searchFilter()">
+            </div>
+
+            <div class="header-actions">
+                <button class="icon-btn" onclick="toggleAuthModal()" title="Account Access">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </button>
+                <button class="icon-btn" onclick="toggleCartDrawer()" title="Shopping Cart">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <path d="M3 6h18"></path>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="cart-badge" id="cartBadgeCount">{{ cart_count }}</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <span class="hero-badge">ADOZE.LK EXCLUSIVE 2026</span>
+                <h1 class="hero-title">Elevate Your Everyday <br><span>Lifestyle Setup</span></h1>
+                <p class="hero-desc">Discover curated timepieces, high-definition noise-cancelling earbuds, crafted
+                    leather satchels, and titanium link bracelets from Adoze.lk.</p>
+                <div class="hero-buttons">
+                    <a href="#shop" class="btn-primary" onclick="filterCategory('all')">Browse Catalog (19) →</a>
+                </div>
+            </div>
+
+            <div class="hero-image-wrap">
+                <img src="/static/images/products/watch1.jpg" alt="Featured Watch"
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600';">
+                <div class="discount-sticker">
+                    <small>Up to</small>
+                    50%
+                    <small style="font-size: 8px;">OFF</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon">🚚</div>
+                <div class="feature-info">
+                    <h4>Express Shipping</h4>
+                    <p>Free over $99</p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🔄</div>
+                <div class="feature-info">
+                    <h4>Easy Returns</h4>
+                    <p>30-day guarantee</p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-info">
+                    <h4>Secure Checkout</h4>
+                    <p>100% encrypted</p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🎧</div>
+                <div class="feature-info">
+                    <h4>24/7 Support</h4>
+                    <p>Live assistance</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Shortcuts -->
+        <section id="categories">
+            <div class="section-header">
+                <h3 class="section-title">Shop by Category</h3>
+                <span style="font-size: 13px; color: var(--text-muted);">Click any category to filter</span>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card" onclick="filterCategory('watches')">
+                    <div class="cat-icon-wrap">⌚</div>
+                    <h5>Timepieces</h5><span>5 Watches</span>
+                </div>
+                <div class="category-card" onclick="filterCategory('earphones')">
+                    <div class="cat-icon-wrap">🎧</div>
+                    <h5>Audio</h5><span>4 Earphones</span>
+                </div>
+                <div class="category-card" onclick="filterCategory('handbags')">
+                    <div class="cat-icon-wrap">👜</div>
+                    <h5>Carry & Bags</h5><span>5 Handbags</span>
+                </div>
+                <div class="category-card" onclick="filterCategory('bracelets')">
+                    <div class="cat-icon-wrap">✨</div>
+                    <h5>Jewelry</h5><span>5 Bracelets</span>
+                </div>
+                <div class="category-card" onclick="filterCategory('all')">
+                    <div class="cat-icon-wrap">🛍️</div>
+                    <h5>All Gear</h5><span>19 Items</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Listings -->
+        <section id="shop">
+            <div class="section-header">
+                <div>
+                    <h3 class="section-title" id="catalogTitle">Featured Catalog</h3>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Dynamic inventory linked to
+                        SQLite database</p>
+                </div>
+
+                <div class="filter-pills">
+                    <button class="pill-btn active" onclick="filterCategory('all', this)">All Items (19)</button>
+                    <button class="pill-btn" onclick="filterCategory('watches', this)">⌚ Watches (5)</button>
+                    <button class="pill-btn" onclick="filterCategory('earphones', this)">🎧 Earphones (4)</button>
+                    <button class="pill-btn" onclick="filterCategory('handbags', this)">👜 Handbags (5)</button>
+                    <button class="pill-btn" onclick="filterCategory('bracelets', this)">✨ Bracelets (5)</button>
+                </div>
+            </div>
+
+            <!-- Product Cards Grid: All 19 Products -->
+            <div class="products-grid" id="mainCatalog">
+
+                <!-- ==================== 1. WATCHES (5 ITEMS) ==================== -->
+
+                <!-- Watch 1 -->
+                <div class="item-card" data-title="aura stealth minimalist steel watch">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Aura Stealth Minimalist Steel Watch', 'Ultra-sleek gunmetal stainless steel timepiece featuring a minimal dial and brushed link bracelet.', '189.00', '/static/images/products/watch1.jpg', '1')">
+                        <img src="/static/images/products/watch1.jpg" alt="Aura Stealth Minimalist Steel Watch"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Timepieces</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Aura Stealth Minimalist Steel Watch', 'Ultra-sleek gunmetal stainless steel timepiece featuring a minimal dial and brushed link bracelet.', '189.00', '/static/images/products/watch1.jpg', '1')">
+                            Aura Stealth Minimalist Steel Watch
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.9)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$189.00</span>
+                            <span class="old-price">$224.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Aura Stealth Minimalist Steel Watch', 'Ultra-sleek gunmetal stainless steel timepiece featuring a minimal dial and brushed link bracelet.', '189.00', '/static/images/products/watch1.jpg', '1')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('1', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Watch 2 -->
+                <div class="item-card" data-title="nektom matrix skeleton chronograph watch">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Nektom Matrix Skeleton Chronograph', 'Industrial square steel casing with an intricate mechanical skeleton layout and stitched black leather strap.', '145.00', '/static/images/products/watch2.avif', '2')">
+                        <img src="/static/images/products/watch2.avif" alt="Nektom Matrix Skeleton Chronograph"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Timepieces</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Nektom Matrix Skeleton Chronograph', 'Industrial square steel casing with an intricate mechanical skeleton layout and stitched black leather strap.', '145.00', '/static/images/products/watch2.avif', '2')">
+                            Nektom Matrix Skeleton Chronograph
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.8)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$145.00</span>
+                            <span class="old-price">$180.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Nektom Matrix Skeleton Chronograph', 'Industrial square steel casing with an intricate mechanical skeleton layout and stitched black leather strap.', '145.00', '/static/images/products/watch2.avif', '2')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('2', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Watch 3 -->
+                <div class="item-card" data-title="chronos heritage rose gold watch">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Chronos Heritage Rose Gold Watch', 'Polished rose gold bezel with three complication sub-dials and crocodile-textured genuine leather strap.', '249.00', '/static/images/products/watch3.jpg', '3')">
+                        <img src="/static/images/products/watch3.jpg" alt="Chronos Heritage Rose Gold Watch"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Timepieces</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Chronos Heritage Rose Gold Watch', 'Polished rose gold bezel with three complication sub-dials and crocodile-textured genuine leather strap.', '249.00', '/static/images/products/watch3.jpg', '3')">
+                            Chronos Heritage Rose Gold Watch
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(5.0)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$249.00</span>
+                            <span class="old-price">$284.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Chronos Heritage Rose Gold Watch', 'Polished rose gold bezel with three complication sub-dials and crocodile-textured genuine leather strap.', '249.00', '/static/images/products/watch3.jpg', '3')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('3', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Watch 4 -->
+                <div class="item-card" data-title="vanguard granular cushion chronograph watch">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Vanguard Granular Cushion Chronograph', 'Subtle sand-textured dial housed in a brushed steel cushion case with a durable taupe leather band.', '219.00', '/static/images/products/watch4.jpg', '4')">
+                        <img src="/static/images/products/watch4.jpg" alt="Vanguard Granular Cushion Chronograph"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Timepieces</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Vanguard Granular Cushion Chronograph', 'Subtle sand-textured dial housed in a brushed steel cushion case with a durable taupe leather band.', '219.00', '/static/images/products/watch4.jpg', '4')">
+                            Vanguard Granular Cushion Chronograph
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.9)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$219.00</span>
+                            <span class="old-price">$254.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Vanguard Granular Cushion Chronograph', 'Subtle sand-textured dial housed in a brushed steel cushion case with a durable taupe leather band.', '219.00', '/static/images/products/watch4.jpg', '4')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('4', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Watch 5 -->
+                <div class="item-card" data-title="universe point octo sports watch">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Universe Point Octo Sports Watch', 'Modern octagonal geometric case, textured royal blue dial, and high-grade sports silicone strap.', '129.00', '/static/images/products/watch5.jpg', '5')">
+                        <img src="/static/images/products/watch5.jpg" alt="Universe Point Octo Sports Watch"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Timepieces</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Universe Point Octo Sports Watch', 'Modern octagonal geometric case, textured royal blue dial, and high-grade sports silicone strap.', '129.00', '/static/images/products/watch5.jpg', '5')">
+                            Universe Point Octo Sports Watch
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.7)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$129.00</span>
+                            <span class="old-price">$164.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Universe Point Octo Sports Watch', 'Modern octagonal geometric case, textured royal blue dial, and high-grade sports silicone strap.', '129.00', '/static/images/products/watch5.jpg', '5')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('5', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- ==================== 2. AUDIO & EARPHONES (4 ITEMS) ==================== -->
+
+                <!-- Earphones 1 -->
+                <div class="item-card" data-title="airsound pro 2 active anc earbuds earphones">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('AirSound Pro 2 Active ANC Earbuds', 'Active Noise Cancellation, Transparency Mode, personalized spatial audio, and wireless charging case.', '249.00', '/static/images/products/earphones1.jpg', '6')">
+                        <img src="/static/images/products/earphones1.jpg" alt="AirSound Pro 2 Active ANC Earbuds"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Audio</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('AirSound Pro 2 Active ANC Earbuds', 'Active Noise Cancellation, Transparency Mode, personalized spatial audio, and wireless charging case.', '249.00', '/static/images/products/earphones1.jpg', '6')">
+                            AirSound Pro 2 Active ANC Earbuds
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.9)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$249.00</span>
+                            <span class="old-price">$284.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('AirSound Pro 2 Active ANC Earbuds', 'Active Noise Cancellation, Transparency Mode, personalized spatial audio, and wireless charging case.', '249.00', '/static/images/products/earphones1.jpg', '6')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('6', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Earphones 2 -->
+                <div class="item-card" data-title="shadowbuds stealth wireless anc earbuds earphones">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('ShadowBuds Stealth Wireless ANC', 'Ergonomic matte black stem earbuds with noise isolation, dual mics, and up to 28 hours playtime.', '79.00', '/static/images/products/earphones2.jpg', '7')">
+                        <img src="/static/images/products/earphones2.jpg" alt="ShadowBuds Stealth Wireless ANC"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Audio</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('ShadowBuds Stealth Wireless ANC', 'Ergonomic matte black stem earbuds with noise isolation, dual mics, and up to 28 hours playtime.', '79.00', '/static/images/products/earphones2.jpg', '7')">
+                            ShadowBuds Stealth Wireless ANC
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.7)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$79.00</span>
+                            <span class="old-price">$114.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('ShadowBuds Stealth Wireless ANC', 'Ergonomic matte black stem earbuds with noise isolation, dual mics, and up to 28 hours playtime.', '79.00', '/static/images/products/earphones2.jpg', '7')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('7', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Earphones 3 -->
+                <div class="item-card" data-title="oneplus buds pro dual-tone earbuds earphones">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('OnePlus Buds Pro Dual-Tone Earbuds', 'Dual-tone matte and metallic finish with smart adaptive noise cancellation and low-latency audio.', '149.00', '/static/images/products/earphones3.jpg', '8')">
+                        <img src="/static/images/products/earphones3.jpg" alt="OnePlus Buds Pro Dual-Tone Earbuds"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Audio</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('OnePlus Buds Pro Dual-Tone Earbuds', 'Dual-tone matte and metallic finish with smart adaptive noise cancellation and low-latency audio.', '149.00', '/static/images/products/earphones3.jpg', '8')">
+                            OnePlus Buds Pro Dual-Tone Earbuds
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.8)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$149.00</span>
+                            <span class="old-price">$184.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('OnePlus Buds Pro Dual-Tone Earbuds', 'Dual-tone matte and metallic finish with smart adaptive noise cancellation and low-latency audio.', '149.00', '/static/images/products/earphones3.jpg', '8')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('8', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Earphones 4 -->
+                <div class="item-card" data-title="obsidian pebble true wireless earphones earbuds">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Obsidian Pebble True Wireless Earphones', 'Glossy obsidian earbuds inside a compact rounded pebble case with 10mm dynamic bass drivers.', '69.00', '/static/images/products/earphones4.jpg', '9')">
+                        <img src="/static/images/products/earphones4.jpg" alt="Obsidian Pebble True Wireless Earphones"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Audio</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Obsidian Pebble True Wireless Earphones', 'Glossy obsidian earbuds inside a compact rounded pebble case with 10mm dynamic bass drivers.', '69.00', '/static/images/products/earphones4.jpg', '9')">
+                            Obsidian Pebble True Wireless Earphones
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.6)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$69.00</span>
+                            <span class="old-price">$104.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Obsidian Pebble True Wireless Earphones', 'Glossy obsidian earbuds inside a compact rounded pebble case with 10mm dynamic bass drivers.', '69.00', '/static/images/products/earphones4.jpg', '9')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('9', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- ==================== 3. DESIGNER HANDBAGS (5 ITEMS) ==================== -->
+
+                <!-- Bag 2 -->
+                <div class="item-card" data-title="ivory structured tote with gold chain charm bag handbag">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Ivory Structured Tote with Gold Chain Charm', 'Premium cream-white leather tote bag with rolled top handles, polished gold chain pendant, and spacious dual compartments.', '185.00', '/static/images/products/bag2.jpg', '10')">
+                        <img src="/static/images/products/bag2.jpg" alt="Ivory Structured Tote with Gold Chain Charm"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Leather & Carry</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Ivory Structured Tote with Gold Chain Charm', 'Premium cream-white leather tote bag with rolled top handles, polished gold chain pendant, and spacious dual compartments.', '185.00', '/static/images/products/bag2.jpg', '10')">
+                            Ivory Structured Tote with Gold Chain Charm
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.9)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$185.00</span>
+                            <span class="old-price">$220.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Ivory Structured Tote with Gold Chain Charm', 'Premium cream-white leather tote bag with rolled top handles, polished gold chain pendant, and spacious dual compartments.', '185.00', '/static/images/products/bag2.jpg', '10')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('10', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Bag 4 -->
+                <div class="item-card" data-title="maison olive quilted leather flap bag handbag">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Maison Olive Quilted Leather Flap Bag', 'Luxurious olive green quilted leather handbag with arched handle, gold-tone hardware, and iconic turn-lock closure.', '265.00', '/static/images/products/bag4.jpg', '11')">
+                        <img src="/static/images/products/bag4.jpg" alt="Maison Olive Quilted Leather Flap Bag"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Leather & Carry</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Maison Olive Quilted Leather Flap Bag', 'Luxurious olive green quilted leather handbag with arched handle, gold-tone hardware, and iconic turn-lock closure.', '265.00', '/static/images/products/bag4.jpg', '11')">
+                            Maison Olive Quilted Leather Flap Bag
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(5.0)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$265.00</span>
+                            <span class="old-price">$300.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Maison Olive Quilted Leather Flap Bag', 'Luxurious olive green quilted leather handbag with arched handle, gold-tone hardware, and iconic turn-lock closure.', '265.00', '/static/images/products/bag4.jpg', '11')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('11', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Bag 5 -->
+                <div class="item-card" data-title="lumina pearl gloss hardcase handbag bag">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Lumina Pearl Gloss Hardcase Handbag', 'Futuristic structured ivory gloss finish paired with sculpted double gold handles and minimalist front emblem plaque.', '210.00', '/static/images/products/bag5.jpg', '12')">
+                        <img src="/static/images/products/bag5.jpg" alt="Lumina Pearl Gloss Hardcase Handbag"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1591561954557-26941169b49e?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Leather & Carry</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Lumina Pearl Gloss Hardcase Handbag', 'Futuristic structured ivory gloss finish paired with sculpted double gold handles and minimalist front emblem plaque.', '210.00', '/static/images/products/bag5.jpg', '12')">
+                            Lumina Pearl Gloss Hardcase Handbag
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.8)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$210.00</span>
+                            <span class="old-price">$245.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Lumina Pearl Gloss Hardcase Handbag', 'Futuristic structured ivory gloss finish paired with sculpted double gold handles and minimalist front emblem plaque.', '210.00', '/static/images/products/bag5.jpg', '12')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('12', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Bag 6 -->
+                <div class="item-card" data-title="noir royale top-handle bag with silk twilly handbag">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Noir Royale Top-Handle Bag with Silk Twilly', 'Pebbled black calfskin leather satchel featuring a gold twist lock and silk equestrian scarf-wrapped top handle.', '295.00', '/static/images/products/bag6.jpg', '13')">
+                        <img src="/static/images/products/bag6.jpg" alt="Noir Royale Top-Handle Bag with Silk Twilly"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Leather & Carry</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Noir Royale Top-Handle Bag with Silk Twilly', 'Pebbled black calfskin leather satchel featuring a gold twist lock and silk equestrian scarf-wrapped top handle.', '295.00', '/static/images/products/bag6.jpg', '13')">
+                            Noir Royale Top-Handle Bag with Silk Twilly
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.9)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$295.00</span>
+                            <span class="old-price">$330.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Noir Royale Top-Handle Bag with Silk Twilly', 'Pebbled black calfskin leather satchel featuring a gold twist lock and silk equestrian scarf-wrapped top handle.', '295.00', '/static/images/products/bag6.jpg', '13')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('13', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Bag 7 -->
+                <div class="item-card" data-title="crimson scarlet satchel with silk scarf bow bag handbag">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Crimson Scarlet Satchel with Silk Scarf Bow', 'Rich crimson red leather structured handbag with gold bar clasp accent and patterned satin bow ribbon handle.', '230.00', '/static/images/products/bag7.jpg', '14')">
+                        <img src="/static/images/products/bag7.jpg" alt="Crimson Scarlet Satchel with Silk Scarf Bow"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Leather & Carry</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Crimson Scarlet Satchel with Silk Scarf Bow', 'Rich crimson red leather structured handbag with gold bar clasp accent and patterned satin bow ribbon handle.', '230.00', '/static/images/products/bag7.jpg', '14')">
+                            Crimson Scarlet Satchel with Silk Scarf Bow
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.8)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$230.00</span>
+                            <span class="old-price">$265.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Crimson Scarlet Satchel with Silk Scarf Bow', 'Rich crimson red leather structured handbag with gold bar clasp accent and patterned satin bow ribbon handle.', '230.00', '/static/images/products/bag7.jpg', '14')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('14', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- ==================== 4. BRACELETS & JEWELRY (5 ITEMS) ==================== -->
+
+                <!-- Bracelet 1 -->
+                <div class="item-card" data-title="sterling silver trio stack chain set bracelet jewelry">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Sterling Silver Trio Stack Chain Set', 'Layered 3-piece silver bracelet set featuring a classic curb link, twisted rope chain, and sleek round snake chain.', '95.00', '/static/images/products/bracelet1.jpg', '15')">
+                        <img src="/static/images/products/bracelet1.jpg" alt="Sterling Silver Trio Stack Chain Set"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1611591475152-473523dd665e?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Jewelry</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Sterling Silver Trio Stack Chain Set', 'Layered 3-piece silver bracelet set featuring a classic curb link, twisted rope chain, and sleek round snake chain.', '95.00', '/static/images/products/bracelet1.jpg', '15')">
+                            Sterling Silver Trio Stack Chain Set
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.9)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$95.00</span>
+                            <span class="old-price">$130.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Sterling Silver Trio Stack Chain Set', 'Layered 3-piece silver bracelet set featuring a classic curb link, twisted rope chain, and sleek round snake chain.', '95.00', '/static/images/products/bracelet1.jpg', '15')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('15', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Bracelet 2 -->
+                <div class="item-card" data-title="minimalist steel paperclip link bracelet jewelry">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Minimalist Steel Paperclip Link Bracelet', 'Modern elongated paperclip chain links crafted in hypoallergenic high-polish 316L stainless steel.', '55.00', '/static/images/products/bracelet2.jpg', '16')">
+                        <img src="/static/images/products/bracelet2.jpg" alt="Minimalist Steel Paperclip Link Bracelet"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Jewelry</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Minimalist Steel Paperclip Link Bracelet', 'Modern elongated paperclip chain links crafted in hypoallergenic high-polish 316L stainless steel.', '55.00', '/static/images/products/bracelet2.jpg', '16')">
+                            Minimalist Steel Paperclip Link Bracelet
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.7)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$55.00</span>
+                            <span class="old-price">$90.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Minimalist Steel Paperclip Link Bracelet', 'Modern elongated paperclip chain links crafted in hypoallergenic high-polish 316L stainless steel.', '55.00', '/static/images/products/bracelet2.jpg', '16')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('16', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Bracelet 4 -->
+                <div class="item-card" data-title="trinity cross silicone and steel bangle set bracelet jewelry">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Trinity Cross Silicone & Steel Bangle Set', 'Triple-stacked black waterproof silicone wristbands fitted with gold, silver, and gunmetal cross emblem plates.', '68.00', '/static/images/products/bracelet4.jpg', '17')">
+                        <img src="/static/images/products/bracelet4.jpg" alt="Trinity Cross Silicone & Steel Bangle Set"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Jewelry</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Trinity Cross Silicone & Steel Bangle Set', 'Triple-stacked black waterproof silicone wristbands fitted with gold, silver, and gunmetal cross emblem plates.', '68.00', '/static/images/products/bracelet4.jpg', '17')">
+                            Trinity Cross Silicone & Steel Bangle Set
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.8)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$68.00</span>
+                            <span class="old-price">$103.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Trinity Cross Silicone & Steel Bangle Set', 'Triple-stacked black waterproof silicone wristbands fitted with gold, silver, and gunmetal cross emblem plates.', '68.00', '/static/images/products/bracelet4.jpg', '17')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('17', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Bracelet 5 -->
+                <div class="item-card" data-title="stealth curve polished plate bangle bracelet jewelry">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Stealth Curve Polished Plate Bangle', 'Matte black sport silicone band with an ergonomic curved stainless steel mirror-finish identification bar.', '49.00', '/static/images/products/bracelet5.jpg', '18')">
+                        <img src="/static/images/products/bracelet5.jpg" alt="Stealth Curve Polished Plate Bangle"
+                            loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Jewelry</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Stealth Curve Polished Plate Bangle', 'Matte black sport silicone band with an ergonomic curved stainless steel mirror-finish identification bar.', '49.00', '/static/images/products/bracelet5.jpg', '18')">
+                            Stealth Curve Polished Plate Bangle
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.6)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$49.00</span>
+                            <span class="old-price">$84.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Stealth Curve Polished Plate Bangle', 'Matte black sport silicone band with an ergonomic curved stainless steel mirror-finish identification bar.', '49.00', '/static/images/products/bracelet5.jpg', '18')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('18', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Bracelet 6 -->
+                <div class="item-card" data-title="artisan leather cuff with sterling silver bar bracelet jewelry">
+                    <span class="item-badge">-20%</span>
+                    <button class="wishlist-btn" title="Add to Wishlist">♥</button>
+                    <div class="item-img-wrap"
+                        onclick="showProductDetails('Artisan Leather Cuff with Sterling Silver Bar', 'Genuine black calfskin strap bracelet with a high-shine curved silver bar accent plate and secure locking clasp.', '62.00', '/static/images/products/bracelet6.jpg', '19')">
+                        <img src="/static/images/products/bracelet6.jpg"
+                            alt="Artisan Leather Cuff with Sterling Silver Bar" loading="lazy"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600';">
+                    </div>
+                    <div>
+                        <div class="item-brand">Adoze Jewelry</div>
+                        <h4 class="item-title"
+                            onclick="showProductDetails('Artisan Leather Cuff with Sterling Silver Bar', 'Genuine black calfskin strap bracelet with a high-shine curved silver bar accent plate and secure locking clasp.', '62.00', '/static/images/products/bracelet6.jpg', '19')">
+                            Artisan Leather Cuff with Sterling Silver Bar
+                        </h4>
+                        <div class="item-rating">★★★★★ <span>(4.9)</span></div>
+                        <div class="item-price-row">
+                            <span class="current-price">$62.00</span>
+                            <span class="old-price">$97.00</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn-outline"
+                            onclick="showProductDetails('Artisan Leather Cuff with Sterling Silver Bar', 'Genuine black calfskin strap bracelet with a high-shine curved silver bar accent plate and secure locking clasp.', '62.00', '/static/images/products/bracelet6.jpg', '19')">Details</button>
+                        <button class="add-cart-btn" onclick="addToCartLive('19', this)">+ Add to Cart</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- Slide-Over Shopping Cart Drawer -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="toggleCartDrawer()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="drawer-header">
+            <div class="drawer-title">Adoze Shopping Cart (<span id="drawerBadgeCount">{{ cart_count }}</span>)</div>
+            <button class="drawer-close" onclick="toggleCartDrawer()">✕</button>
+        </div>
+        <div class="cart-items-scroll" id="cartItemsList">
+            {% for item in cart_items %}
+            <div class="drawer-item">
+                <div>
+                    <strong>{{ item.product.name }}</strong>
+                    <div style="color: var(--text-muted); font-size: 12px;">Qty: {{ item.qty }} × ${{ item.product.price
+                        }}</div>
+                </div>
+                <div style="font-weight: 700;">${{ item.subtotal }}</div>
+            </div>
+            {% empty %}
+            <p id="emptyCartText"
+                style="color: var(--text-muted); font-size: 14px; text-align: center; margin-top: 40px;">Your cart is
+                empty.</p>
+            {% endfor %}
+        </div>
+        <div class="drawer-footer">
+            <div
+                style="display: flex; justify-content: space-between; font-weight: 800; font-size: 16px; margin-bottom: 14px;">
+                <span>Total:</span>
+                <span id="drawerTotalPrice">${{ cart_total }}</span>
+            </div>
+            {% if user.is_authenticated %}
+            <a href="{% url 'checkout' %}" class="btn-primary"
+                style="width: 100%; justify-content: center; margin-bottom: 8px;">Proceed to Checkout</a>
+            {% else %}
+            <button onclick="toggleAuthModal()" class="btn-primary"
+                style="width: 100%; justify-content: center; margin-bottom: 8px;">Log In to Checkout</button>
+            {% endif %}
+            <a href="{% url 'clear_cart' %}"
+                style="display: block; text-align: center; font-size: 12px; color: var(--badge-red); font-weight: 600;">Clear
+                Cart</a>
+        </div>
+    </div>
+
+    <!-- Product Details Modal Window -->
+    <div class="modal-wrap" id="detailsModal" onclick="closeDetailsModal(event)">
+        <div class="modal-box" style="max-width: 480px; padding: 0; overflow: hidden;">
+            <img id="detailImg" src="" style="width: 100%; height: 260px; object-fit: cover;" alt="Product Preview">
+            <div style="padding: 24px;">
+                <h3 id="detailTitle" style="font-size: 20px; font-weight: 800; margin-bottom: 8px;"></h3>
+                <p id="detailDesc"
+                    style="color: var(--text-muted); font-size: 14px; line-height: 1.5; margin-bottom: 16px;"></p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span id="detailPrice" style="font-size: 22px; font-weight: 800; color: var(--text-dark);"></span>
+                    <button id="modalAddBtn" class="btn-primary">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Success Modal Window -->
+    <div class="modal-wrap" id="orderSuccessModal" onclick="closeOrderSuccessModal(event)">
+        <div class="modal-box" style="text-align: center; max-width: 440px; padding: 36px 24px;">
+            <div
+                style="width: 68px; height: 68px; background: #dcfce7; color: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 34px; margin: 0 auto 16px; font-weight: 800;">
+                ✓
+            </div>
+            <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Order Placed Successfully!</h3>
+            <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 24px;">
+                Thank you for shopping at Adoze.lk! Your order <strong id="successOrderId"
+                    style="color: var(--primary);">#--</strong> has been confirmed and saved to SQLite.
+            </p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button class="btn-primary" onclick="closeOrderSuccessModal()">Continue Shopping</button>
+                <button class="btn-outline" onclick="openOrdersFromSuccess()">View in Orders</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal-wrap" id="authModal" onclick="closeAuthModal(event)">
+        <div class="modal-box">
+            {% if user.is_authenticated %}
+            <h3 style="margin-bottom: 8px;">Hello, {{ user.username }}!</h3>
+            <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 16px;">You are currently signed in to
+                Adoze.lk.</p>
+            <div style="margin-bottom: 16px;">
+                <h4 style="font-size: 14px; margin-bottom: 8px;">Your Orders:</h4>
+                {% for o in orders %}
+                <div style="font-size: 13px; padding: 6px 0; border-bottom: 1px solid var(--border);">Order #{{ o.id }}
+                    — ${{ o.total_price }}</div>
+                {% empty %}
+                <p style="font-size: 12px; color: var(--text-muted);">No orders placed yet.</p>
+                {% endfor %}
+            </div>
+            <a href="{% url 'logout' %}" class="btn-primary"
+                style="width: 100%; justify-content: center; background: var(--badge-red);">Sign Out</a>
+            {% else %}
+            <h3 style="margin-bottom: 12px;">Sign In to Adoze.lk</h3>
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" name="login" class="btn-primary"
+                    style="width: 100%; justify-content: center; margin-bottom: 8px;">Log In</button>
+                <button type="submit" name="register" class="btn-outline"
+                    style="width: 100%; text-align: center; cursor: pointer;">Create Account</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // Live AJAX Add-to-Cart without Page Reload
+        function addToCartLive(productId, btnElement) {
+            if (btnElement) {
+                btnElement.innerText = "Adding...";
+                btnElement.disabled = true;
+            }
+
+            fetch('/cart/add/' + productId + '/?ajax=1', {
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        document.getElementById('cartBadgeCount').innerText = data.cart_count;
+                        document.getElementById('drawerBadgeCount').innerText = data.cart_count;
+                        document.getElementById('drawerTotalPrice').innerText = '$' + data.cart_total;
+
+                        const container = document.getElementById('cartItemsList');
+                        container.innerHTML = '';
+                        data.cart_items.forEach(item => {
+                            const row = document.createElement('div');
+                            row.className = 'drawer-item';
+                            row.innerHTML = `
+                            <div>
+                                <strong>${item.name}</strong>
+                                <div style="color: var(--text-muted); font-size: 12px;">Qty: ${item.qty} × $${item.price}</div>
+                            </div>
+                            <div style="font-weight: 700;">$${item.subtotal}</div>
+                        `;
+                            container.appendChild(row);
+                        });
+
+                        showToast('🎉 Added to shopping cart!');
+
+                        const drawer = document.getElementById('cartDrawer');
+                        const overlay = document.getElementById('drawerOverlay');
+                        drawer.classList.add('open');
+                        overlay.style.display = 'block';
+
+                        if (btnElement) {
+                            btnElement.innerText = "✓ Added";
+                            btnElement.classList.add('added');
+                            setTimeout(() => {
+                                btnElement.innerText = "+ Add to Cart";
+                                btnElement.classList.remove('added');
+                                btnElement.disabled = false;
+                            }, 1200);
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.error("Cart error:", err);
+                    if (btnElement) {
+                        btnElement.innerText = "+ Add to Cart";
+                        btnElement.disabled = false;
+                    }
+                });
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                overlay.style.display = 'none';
+            } else {
+                drawer.classList.add('open');
+                overlay.style.display = 'block';
+            }
+        }
+
+        // Category Filter Tabs
+        function filterCategory(category, buttonElement) {
+            const cards = document.querySelectorAll('.item-card');
+            const titleHeader = document.getElementById('catalogTitle');
+
+            if (buttonElement) {
+                document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+                buttonElement.classList.add('active');
+            }
+
+            const titles = {
+                'all': 'Featured Catalog',
+                'watches': '⌚ Luxury Timepieces Collection',
+                'earphones': '🎧 ANC Audio & Earbuds',
+                'handbags': '👜 Designer Handbags & Totes',
+                'bracelets': '✨ Crafted Bracelets & Jewelry'
+            };
+            if (titleHeader && titles[category]) {
+                titleHeader.innerText = titles[category];
+            }
+
+            cards.forEach(card => {
+                const title = (card.getAttribute('data-title') || '').toLowerCase();
+                let matches = false;
+
+                if (category === 'all') matches = true;
+                else if (category === 'watches') matches = title.includes('watch') || title.includes('chronograph');
+                else if (category === 'earphones') matches = title.includes('ear') || title.includes('buds') || title.includes('airsound') || title.includes('pebble');
+                else if (category === 'handbags') matches = title.includes('bag') || title.includes('tote') || title.includes('satchel');
+                else if (category === 'bracelets') matches = title.includes('bracelet') || title.includes('bangle') || title.includes('cuff') || title.includes('chain set');
+
+                card.style.display = matches ? 'flex' : 'none';
+            });
+
+            const shopSection = document.getElementById('shop');
+            if (shopSection) shopSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Live Search Filter
+        function searchFilter() {
+            const query = document.getElementById('storeSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.item-card');
+            cards.forEach(card => {
+                const title = (card.getAttribute('data-title') || '').toLowerCase();
+                card.style.display = title.includes(query) ? 'flex' : 'none';
+            });
+        }
+
+        // Product Details Modal
+        function showProductDetails(name, desc, price, img, id) {
+            document.getElementById('detailTitle').innerText = name;
+            document.getElementById('detailDesc').innerText = desc;
+            document.getElementById('detailPrice').innerText = '$' + price;
+            document.getElementById('detailImg').src = img;
+            const btn = document.getElementById('modalAddBtn');
+            btn.onclick = () => {
+                addToCartLive(id, btn);
+                document.getElementById('detailsModal').style.display = 'none';
+            };
+            document.getElementById('detailsModal').style.display = 'flex';
+        }
+
+        function closeDetailsModal(e) {
+            if (e.target.id === 'detailsModal') document.getElementById('detailsModal').style.display = 'none';
+        }
+
+        // Auth Modal Controls
+        function toggleAuthModal() {
+            const m = document.getElementById('authModal');
+            m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function closeAuthModal(e) {
+            if (e.target.id === 'authModal') document.getElementById('authModal').style.display = 'none';
+        }
+
+        // Order Success Modal Handler
+        function closeOrderSuccessModal(e) {
+            if (!e || e.target.id === 'orderSuccessModal') {
+                document.getElementById('orderSuccessModal').style.display = 'none';
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+
+        function openOrdersFromSuccess() {
+            document.getElementById('orderSuccessModal').style.display = 'none';
+            window.history.replaceState({}, document.title, window.location.pathname);
+            toggleAuthModal();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('order_success');
+            if (orderId) {
+                document.getElementById('successOrderId').innerText = '#' + orderId;
+                document.getElementById('orderSuccessModal').style.display = 'flex';
+                showToast(`🎉 Order #${orderId} successfully placed!`);
+            }
+        });
+    </script>
+</body>
+
+</html>
